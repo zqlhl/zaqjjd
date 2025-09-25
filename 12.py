@@ -17,7 +17,7 @@ def generate_random_username():
 
 def send_email_with_word_attachment():
     # Word文档路径 - GitHub环境中需要调整
-    word_document_path = "document.docx"  # 假设文档在仓库根目录
+    word_document_path = "举报信.docx"  # 假设文档在仓库根目录
 
     # 检查文件是否存在
     if not os.path.exists(word_document_path):
@@ -35,9 +35,9 @@ def send_email_with_word_attachment():
 
     params = {
         "from": f"{random_username}@zzqqyy.sbs",
-        "to": ["lhl2006111@163.com"],
+        "to": ["422849204@qq.com"],
         "subject": f"报告 - {datetime.now().strftime('%Y-%m-%d %H:%M')}",
-        "html": "<strong>请查收附件中的Word文档。</strong>",
+        "html": "<strong>贫困补助匿名举报信。请领导看一下，谢谢</strong>",
         "attachments": [
             {
                 "filename": os.path.basename(word_document_path),
@@ -58,3 +58,4 @@ def send_email_with_word_attachment():
 # GitHub Actions中只执行一次，不使用循环
 if __name__ == "__main__":
     send_email_with_word_attachment()
+
