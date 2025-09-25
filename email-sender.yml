@@ -1,0 +1,29 @@
+name: Email Sender Bot
+
+on:
+  schedule:
+    # 每6小时运行一次，持续2天（共8次）
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+        
+    - name: Install dependencies
+      run: |
+        pip install resend
+        
+    - name: Run email script
+      env:
+        RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      run: |
+        python 12.py
